@@ -10,17 +10,20 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <map>
 
 using namespace std;
 
 int main()
 {
-	string test = "24354364fghdgsgq23rq&q3rlkgj*lkgjs%akwhf;kheg;ef";
-	hash<string> t;
-	unordered_map<string, int> map;
-	unordered_set<string> set;
-	cout << to_string(t(test)) << endl;
-	cout << test << endl;
+	// a,b,d,f
+	map<char, int> m;
+	m['a'] = 1;
+	m['b'] = 2;
+	m['d'] = 4;
+	m['f'] = 5;
+	cout << m.lower_bound('c')->first << endl;
+	cout << m.upper_bound('c')->first << endl;
 	return 0;
 }
 
