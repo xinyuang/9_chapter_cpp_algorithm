@@ -39,3 +39,41 @@ public:
 		return res;
 	}
 };
+
+class Solution {
+public:
+	/*
+	 * @param : A string
+	 * @param : A set of word
+	 * @return: the number of possible sentences.
+	 */
+	int wordBreak3(string& s, unordered_set<string>& dict) {
+		// Write your code here
+		transform(s.begin(), s.end(), s.begin(), ::tolower);
+		unordered_set<string> Dict;
+		for (string word : dict)
+		{
+			transform(word.begin(), word.end(), word.begin(), ::tolower);
+			Dict.insert(word);
+		}
+		vector<vector<int>> dp(s.size(), vector<int>(s.size(), 0));
+		for (int i = 0; i < s.size(); i++)
+		{
+			for (int j = i; j < s.size(); j++)
+			{
+				if (Dict.count(s.substr(i, j - i + 1))) dp[i][j] = 1;
+			}
+		}
+		for (int i = 0; i < s.size(); i++)
+		{
+			for (int j = i; j < s.size(); j++)
+			{
+				for (int k = i; k < j; k++)
+				{
+					dp[i][j] += dp[i][k] * dp[k + 1][j];
+				}
+			}
+		}
+		return dp[0][s.size() - 1];
+	}
+};
