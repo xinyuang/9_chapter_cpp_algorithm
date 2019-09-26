@@ -17,13 +17,9 @@ using namespace std;
 int main()
 {
 	// a,b,d,f
-	map<char, int> m;
-	m['a'] = 1;
-	m['b'] = 2;
-	m['d'] = 4;
-	m['f'] = 5;
-	cout << m.lower_bound('c')->first << endl;
-	cout << m.upper_bound('c')->first << endl;
+	string a = "123";
+	a.append(2, '.');
+	cout << a << endl;
 	return 0;
 }
 
