@@ -1,4 +1,48 @@
+// First Unique Number in Data Stream II
 
+#include <list>
+class DataStream {
+public:
+
+	DataStream() {
+		// do intialization if necessary
+	}
+
+	/**
+	 * @param num: next number in stream
+	 * @return: nothing
+	 */
+	void add(int num) {
+		// write your code here
+		if (used.count(num)) return;
+		if (mp.count(num))
+		{
+			stream.erase(mp[num]);
+			used.insert(num);
+		}
+		else
+		{
+			stream.push_back(num);
+			mp[num] = --stream.end();
+		}
+	}
+
+	/**
+	 * @return: the first unique number in stream
+	 */
+	int firstUnique() {
+		// write your code here
+		return stream.front();
+	}
+private:
+	unordered_map<int, std::list<int>::iterator> mp;
+	std::list<int> stream;
+	unordered_set<int> used;
+};
+
+
+
+// no list lib
 class NumNode {
 public:
 	int value;

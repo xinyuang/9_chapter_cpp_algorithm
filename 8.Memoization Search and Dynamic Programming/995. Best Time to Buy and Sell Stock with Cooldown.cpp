@@ -1,3 +1,4 @@
+// Buy stock
 class Solution {
 public:
 	/**

@@ -1,3 +1,10 @@
+// sort colors
+
+//                [4,3,4,3,3,1,2,2,4]  k 1-4 
+//pivot = 2            .             .
+//                 1 2 2 | 3 3 4 3 4 4
+//                 1 2 2   3 3 3 4 4 4
+                   
 class Solution {
 public:
 	/**

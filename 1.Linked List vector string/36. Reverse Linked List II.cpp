@@ -1,3 +1,4 @@
+// Reverse Linked List II
 /**
  * Definition of singly-linked-list:
  * class ListNode {
@@ -48,6 +49,8 @@ public:
 		return dummy->next;
 	}
 
+	//  nullptr <-1 <- 2 <- 3 -> nullptr
+	//                      l     c    p
 	ListNode* reverse(ListNode* target)
 	{
 		if (!target || !target->next) return target;

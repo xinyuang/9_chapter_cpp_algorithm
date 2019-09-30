@@ -1,0 +1,59 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Project",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "9_chapter_cpp_algorithm::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-9_chapter_cpp_algorithm-Debug-0c8a7f6ae8f293d9b288.json",
+					"name" : "9_chapter_cpp_algorithm",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/xinyu/source/repos/9_chapter_cpp_algorithm/9_chapter_cpp_algorithm/out/build/x64-Debug",
+		"source" : "C:/Users/xinyu/source/repos/9_chapter_cpp_algorithm/9_chapter_cpp_algorithm"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}
