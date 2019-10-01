@@ -1,3 +1,5 @@
+// Longest Consecutive Sequence
+// left right pointer, delete in set if continuous
 class Solution {
 public:
 	/**

@@ -1,4 +1,25 @@
 // Buy stock
+
+class Solution {
+public:
+	/**
+	 * @param prices: Given an integer array
+	 * @return: Maximum profit
+	 */
+	int maxProfit(vector<int>& prices) {
+		// write your code here
+		int g_min = INT_MAX;
+		int profit = 0;
+		for (int i = 0; i < prices.size(); i++)
+		{
+			profit = max(profit, prices[i] - g_min);
+			g_min = min(g_min, prices[i]);
+		}
+		return profit;
+	}
+};
+
+// with cool down
 class Solution {
 public:
 	/**

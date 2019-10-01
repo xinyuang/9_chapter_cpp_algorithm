@@ -1,3 +1,6 @@
+// LRU    LRUNode<key,value>
+//   list<LRUNode>          when delete, find the key in list can help to delete it in map
+//   unordered_map<int,list<LRUNode>::iterator>
 #include <list>
 class LRUCache {
 	class LRUNode {

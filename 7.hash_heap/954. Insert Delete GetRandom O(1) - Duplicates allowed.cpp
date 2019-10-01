@@ -1,3 +1,4 @@
+// Insert Delete GetRandom O(1) - Duplicates allowed
 class RandomizedCollection {
 public:
 	/** Initialize your data structure here. */

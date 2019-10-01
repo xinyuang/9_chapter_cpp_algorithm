@@ -1,3 +1,7 @@
+// Sequence Reconstruction
+// 1. construct graph <node, neighbors> <int, vector<int>>
+// 2. construct indegree <node, indegree>  <int,int>
+// 3. BFS queue 
 class Solution {
 public:
 	/**

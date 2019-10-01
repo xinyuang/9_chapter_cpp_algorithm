@@ -1,6 +1,6 @@
 // Edit Distance
-//   horse   rose
-//      .    .
+//   doog dog
+//      .   .
 class Solution {
 public:
 	/**
