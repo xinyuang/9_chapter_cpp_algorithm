@@ -1,3 +1,6 @@
+// Regular Expression Matching
+// devide and conquer
+// memo[i][j] means s[i] p[j] is matched
 class Solution {
 public:
 	/**
@@ -7,37 +10,43 @@ public:
 	 */
 	bool isMatch(string& s, string& p) {
 		// write your code here
-		if (p.size() == 0) return false;
-		vector<vector<int>> dp(s.size(), vector<int>(p.size(), -1));
-		bool res = matching(s, 0, p, 0, dp);
+		vector<vector<int>> memo(s.size(), vector<int>(p.size(), -1));
+		bool res = search(s, 0, p, 0, memo);
 		return res;
 	}
 
-	bool matching(string& s, int s_idx, string& p, int p_idx, vector<vector<int>>& dp)
+	bool search(string& s, int s_idx, string& p, int p_idx, vector<vector<int>>& memo)
 	{
+		//  aa   a******
+
 		if (s.size() == s_idx)
 		{
-			if ((p.size() - p_idx) % 2 != 0) return false;
-			for (int i = p_idx; i < p.size() - 1; i += 2)
+			int remain = p.size() - p_idx;
+			if (remain % 2) return false;
+			while (p_idx < p.size() - 1)
 			{
 				if (p[p_idx + 1] != '*') return false;
+				p_idx += 2;
 			}
 			return true;
 		}
+		//  aaaaaaaa  ab
 		if (p.size() == p_idx) return false;
-		if (dp[s_idx][p_idx] != -1) return dp[s_idx][p_idx];
-		if (p.size() - p_idx >= 2 && p[p_idx + 1] == '*')
+		if (memo[s_idx][p_idx] != -1) return memo[s_idx][p_idx];
+
+		//    aaab a*b      ab  c*ab
+		if (p[p_idx + 1] == '*')
 		{
-			bool zero = matching(s, s_idx, p, p_idx + 2, dp);
-			bool one = (s[s_idx] == p[p_idx] || p[p_idx] == '.') && matching(s, s_idx + 1, p, p_idx, dp);
-			dp[s_idx][p_idx] = zero || one;
+			bool zero = search(s, s_idx, p, p_idx + 2, memo);
+			bool one = (p[p_idx] == '.' || p[p_idx] == s[s_idx]) && search(s, s_idx + 1, p, p_idx, memo);
+			memo[s_idx][p_idx] = zero || one;
 			return zero || one;
 		}
 		else
 		{
-			bool matched = (s[s_idx] == p[p_idx] || p[p_idx] == '.');
-			bool next = matching(s, s_idx + 1, p, p_idx + 1, dp);
-			dp[s_idx][p_idx] = matched && next;
+			bool matched = p[p_idx] == '.' || p[p_idx] == s[s_idx];
+			bool next = search(s, s_idx + 1, p, p_idx + 1, memo);
+			memo[s_idx][p_idx] = matched && next;
 			return matched && next;
 		}
 	}

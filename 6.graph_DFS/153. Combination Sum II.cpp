@@ -71,3 +71,33 @@ public:
 		}
 	}
 };
+
+// Subset has duplica
+class Solution {
+public:
+	/**
+	 * @param nums: A set of numbers.
+	 * @return: A list of lists. All valid subsets.
+	 */
+	vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+		// write your code here
+		if (nums.size() == 0) return { {} };
+		sort(nums.begin(), nums.end());
+		vector<vector<int>> res;
+		vector<int> path;
+		backtrack(res, path, nums, 0);
+		return res;
+	}
+
+	void backtrack(vector<vector<int>>& res, vector<int>& path, vector<int>& nums, int start)
+	{
+		res.push_back(path);
+		for (int i = start; i < nums.size(); i++)
+		{
+			if (i != 0 && nums[i] == nums[i - 1] && i != start) continue;
+			path.push_back(nums[i]);
+			backtrack(res, path, nums, i + 1);
+			path.pop_back();
+		}
+	}
+};

@@ -1,3 +1,13 @@
+//Stone game
+// [1,3,4,2]
+//  (1,3),4,2  score = (1+3) = 4
+//   4,(4,2 )    score = (1+3) + (4+2) = 10
+//   (4,6)        score = (1+3) + (4+2) + (4+6) = 20
+//  init presum,     score[i][j] = min(score[i][j], score[i][k] + score[k+1][j] + presum[i][j])
+//    ....
+//       |    from botton to up
+//      ..
+//       .
 class Solution {
 public:
 	/**

@@ -1,3 +1,5 @@
+// Word break I
+// dp[i] = dp[i-j]&& dict.count(s.substr(i-j,j))
 class Solution {
 public:
 	/*

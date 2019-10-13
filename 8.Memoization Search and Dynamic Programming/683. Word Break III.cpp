@@ -1,3 +1,5 @@
+// Word Break III
+
 class Solution {
 public:
 	/*
@@ -40,6 +42,11 @@ public:
 	}
 };
 
+//    s[i][j] = sum(s[i][k]*s[k+1][j])
+//     -------
+//    | ----  |
+//    |    -  |
+//     -------
 class Solution {
 public:
 	/*

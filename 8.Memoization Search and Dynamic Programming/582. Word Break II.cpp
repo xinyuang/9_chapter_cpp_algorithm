@@ -1,3 +1,7 @@
+// Word Break II
+// Devide and Conquer
+// vector<string> res = search(idx,s,Dict,memo,max_len)
+// memo[i] = result of s.substr(i)
 class Solution {
 public:
 	/*

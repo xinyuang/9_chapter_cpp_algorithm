@@ -1,9 +1,12 @@
+// House Robber
 class Solution {
 public:
 	/**
 	 * @param A: An array of non-negative integers
 	 * @return: The maximum amount of money you can rob tonight
 	 */
+	// [4,3,4,2,1,6]
+	//        . . i
 	long long houseRobber(vector<int>& A) {
 		// write your code here
 		long last = A[0], last_two = 0;
@@ -13,7 +16,6 @@ public:
 			now = max(last, last_two + A[i]);
 			last_two = last;
 			last = now;
-
 		}
 		return max(now, last);
 	}
