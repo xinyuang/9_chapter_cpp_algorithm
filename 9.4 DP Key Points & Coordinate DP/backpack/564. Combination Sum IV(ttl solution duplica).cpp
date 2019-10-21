@@ -1,5 +1,6 @@
 // 564. Combination Sum IV
 // The total number of solution (each coin can be select many times)
+// [1,2,1] and [1,1,2] are different solutions
 class Solution {
 public:
 	/**

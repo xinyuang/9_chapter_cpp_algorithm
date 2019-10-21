@@ -10,8 +10,8 @@ public:
 	static Solution create(int n, int k) {
 		// Write your code here
 		Solution solution = Solution();
-		solution.n = n;
-		solution.k = k;
+		solution.circle_size = n;
+		solution.points = k;
 		return solution;
 	}
 
@@ -21,19 +21,19 @@ public:
 	 */
 	vector<int> addMachine(int machine_id) {
 		// write your code here
+		int hashcode = rand() % circle_size;
+		int count = 0;
 		vector<int> res;
-		for (int i = 0; i < k; i++)
+		while (count < points)
 		{
-			int idx = rand() % n;
-			while (ids.count(idx))
+			hashcode = rand() % circle_size;
+			if (!mp.count(hashcode))
 			{
-				idx = rand() % n;
+				mp[hashcode] = machine_id;
+				count++;
+				res.push_back(hashcode);
 			}
-			ids.insert(idx);
-			shards[idx] = machine_id;
-			res.push_back(idx);
 		}
-		sort(res.begin(), res.end());
 		return res;
 	}
 
@@ -43,19 +43,13 @@ public:
 	 */
 	int getMachineIdByHashCode(int hashcode) {
 		// write your code here
-		map<int, int>::iterator it = shards.lower_bound(hashcode);
-		if (it == shards.end())
-		{
-			return shards.begin()->second;
-		}
-		else
-		{
-			return it->second;
-		}
+		auto it = mp.lower_bound(hashcode);
+		if (it == mp.end()) return mp.begin()->second;
+		return it->second;
 	}
+
 private:
-	int n;
-	int k;
-	map<int, int> shards;
-	unordered_set<int> ids;
+	int circle_size;
+	int points;
+	map<int, int> mp;  // hashcode - machine_id
 };

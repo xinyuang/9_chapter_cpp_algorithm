@@ -23,7 +23,7 @@ public:
 		{
 			int remain = p.size() - p_idx;
 			if (remain % 2) return false;
-			while (p_idx < p.size() - 1)
+			while (p_idx + 1< p.size())
 			{
 				if (p[p_idx + 1] != '*') return false;
 				p_idx += 2;

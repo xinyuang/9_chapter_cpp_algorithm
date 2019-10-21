@@ -10,7 +10,7 @@ public:
 	 */
 	int maxProfit(vector<int>& prices) {
 		// write your code here
-		int g_min = INT_MAX;
+		int g_min = INT_MAX;  // you need to buy first
 		int profit = 0;
 		for (int i = 0; i < prices.size(); i++)
 		{

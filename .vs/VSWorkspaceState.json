@@ -1,16 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\3.BinarySearch",
     "\\4.Binary Tree - Divide Conquer & Traverse",
     "\\5.Two Pointers",
     "\\6.graph_DFS",
     "\\7.hash_heap",
     "\\8.Memoization Search and Dynamic Programming",
     "\\9.4 DP Key Points & Coordinate DP",
-    "\\9.4 DP Key Points & Coordinate DP\\backpack",
     "\\out"
   ],
-  "SelectedNode": "\\7.hash_heap\\105. Copy List with Random Pointer.cpp",
+  "SelectedNode": "\\9.4 DP Key Points & Coordinate DP\\838. Subarray Sum Equals K.cpp",
   "PreviewInSolutionExplorer": false
 }

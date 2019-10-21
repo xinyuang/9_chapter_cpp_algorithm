@@ -14,11 +14,12 @@ public:
 	 */
 	void add(int num) {
 		// write your code here
-		if (used.count(num)) return;
+		// if(used.count(num)) return;
 		if (mp.count(num))
 		{
+			if (mp[num] == stream.end()) return;
 			stream.erase(mp[num]);
-			used.insert(num);
+			mp[num] = stream.end();
 		}
 		else
 		{
@@ -37,7 +38,6 @@ public:
 private:
 	unordered_map<int, std::list<int>::iterator> mp;
 	std::list<int> stream;
-	unordered_set<int> used;
 };
 
 
