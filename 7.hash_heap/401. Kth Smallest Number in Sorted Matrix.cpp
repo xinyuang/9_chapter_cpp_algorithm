@@ -86,8 +86,7 @@ public:
 			if (range < k) left = mid;
 			else right = mid;
 		}
-		int left_count = find(left, matrix);
-		if (find(left, matrix) + 1 <= k) return left;
+		if (find(right, matrix) + 1 > k) return left;
 		return right;
 	}
 

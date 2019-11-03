@@ -1,5 +1,5 @@
 // Minimum Window Substring
-
+// minimum window contains target
 //  asdbfbgbwb  adb   mp<char,int> char - count (still need ? chars to satisfy requirement)
 //  . ..
 //  i is right ptr, left moves to right util count < tar_len
