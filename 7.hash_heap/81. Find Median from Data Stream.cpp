@@ -1,3 +1,6 @@
+// Find Median from Data Stream
+// max_heap.size()  > min_heap.size()  push min_heap
+//  [      ]  [    ]  return max_heap.top()   or (max_heap.top() + min_heap.top())/2.0
 class Solution {
 public:
 	/**

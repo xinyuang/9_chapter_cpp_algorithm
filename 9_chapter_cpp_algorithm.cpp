@@ -50,7 +50,7 @@ public:
 };
 
 
-int main()
+int main(int argc, char** argv)
 {
 	// a,b,d,f
 	string a = "123";

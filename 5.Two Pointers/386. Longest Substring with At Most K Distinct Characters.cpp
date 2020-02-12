@@ -11,26 +11,20 @@ public:
 	 */
 	int lengthOfLongestSubstringKDistinct(string& s, int k) {
 		// write your code here
-		if (k <= 0)
-			return 0;
-
-		int left = 0, right = 0, max_len = 0;
-		std::unordered_map<char, int> char_2_cnt;
-		while (right < s.size())
+		int left = 0;
+		unordered_map<char, int> mp;
+		int max_len = 0;
+		for (int i = 0; i < s.size(); i++)
 		{
-			char_2_cnt[s[right]]++;
-			right++;
-			while (char_2_cnt.size() > k)
+			mp[s[i]]++;
+			while (mp.size() > k)
 			{
-				char_2_cnt[s[left]]--;
-				if (char_2_cnt[s[left]] == 0)
-					char_2_cnt.erase(s[left]);
+				mp[s[left]]--;
+				if (mp[s[left]] == 0) mp.erase(s[left]);
 				left++;
 			}
-
-			max_len = max(max_len, right - left);
+			max_len = max(max_len, i - left + 1);
 		}
-
 		return max_len;
 	}
 };
