@@ -1,3 +1,7 @@
+//130. Heapify
+//1. iterate from end to begin
+//2. son = idx min(A[2 * k + 1], A[2 * k + 2]), if son smaller swap k and son, else break
+
 class Solution {
 public:
 	/*
