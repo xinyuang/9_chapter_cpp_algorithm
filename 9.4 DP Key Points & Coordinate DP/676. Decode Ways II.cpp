@@ -1,3 +1,8 @@
+//676. Decode Ways II
+//1. dp(s.size() + 1, 0) dp[0] = 1, dp[1] = 1 or 9
+//2. consider 4 situation: nn(0or1L), n * (6or9L), *n(1or2L), **(15L)
+//3. stoi(string), '6' istead of 6!
+
 class Solution {
 public:
 	/**

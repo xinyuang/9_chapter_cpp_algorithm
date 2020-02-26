@@ -1,3 +1,11 @@
+//398. Longest Continuous Increasing Subsequence II
+//1. gothrough each m[i][j]
+//2. dfs dp sotre each longest increasing value, if visited, return
+//3. devide and conquer + dp   if (matrix[new_x][new_y] < matrix[x][y]) {
+//	findLongest(new_x, new_y, dp, matrix);
+//	dp[x][y] = max(dp[x][y], dp[new_x][new_y] + 1);
+//}
+
 class Solution {
 public:
 	int longestIncreasingPath(vector<vector<int>>& matrix) {
