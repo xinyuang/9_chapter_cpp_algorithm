@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\3.BinarySearch_sweepLine\\BinarySearch",
-    "\\5.Two Pointers",
-    "\\6.graph_DFS",
+    "\\11. Trie",
     "\\7.hash_heap",
     "\\8.Memoization Search and Dynamic Programming",
     "\\8.Memoization Search and Dynamic Programming\\game_two_playes",
     "\\8.Memoization Search and Dynamic Programming\\max_min",
     "\\8.Memoization Search and Dynamic Programming\\memo",
-    "\\9.4 DP Key Points & Coordinate DP"
+    "\\8.Memoization Search and Dynamic Programming\\two_sequence",
+    "\\9.4 DP Key Points & Coordinate DP",
+    "\\9.4 DP Key Points & Coordinate DP\\backpack"
   ],
-  "SelectedNode": "\\8.Memoization Search and Dynamic Programming\\max_min",
+  "SelectedNode": "\\9.4 DP Key Points & Coordinate DP\\backpack\\89. k Sum.cpp",
   "PreviewInSolutionExplorer": false
 }
