@@ -1,4 +1,5 @@
-// Subarray Sum Equals K
+//838. Subarray Sum Equals K
+//1. dp memo, use unordered_map to store state
 
 class Solution {
 public:
