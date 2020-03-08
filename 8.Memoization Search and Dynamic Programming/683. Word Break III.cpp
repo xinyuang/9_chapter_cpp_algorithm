@@ -1,4 +1,45 @@
 // Word Break III
+//1. transform(s.begin(), s.end(), s.begin(), ::tolower) if not "", put to unordered_set<string> Dict
+//2. dp(str.size() + 1), str transform to lower
+//3. if (i >= s.size() && str.substr(i - s.size(), s.size()) == s) dp[i] += dp[i - s.size()]
+
+
+class Solution {
+public:
+	/*
+	 * @param : A string
+	 * @param : A set of word
+	 * @return: the number of possible sentences.
+	 */
+	int wordBreak3(string& s, unordered_set<string>& dict) {
+		// Write your code here
+		unordered_set<string> Dict;
+		transform(s.begin(), s.end(), s.begin(), ::tolower);
+		for (string str : dict)
+		{
+			transform(str.begin(), str.end(), str.begin(), ::tolower);
+			if (str == "") continue;
+			Dict.insert(str);
+		}
+		vector<int> dp(s.size() + 1, 0);
+		dp[0] = 1;
+		for (int i = 1; i < dp.size(); i++)
+		{
+			for (string str : Dict)
+			{
+				if (Dict.count(str) && i >= str.size())
+				{
+
+					string cur = s.substr(i - str.size(), str.size());
+					if (cur != str) continue;
+					dp[i] += dp[i - str.size()];
+				}
+			}
+		}
+		return dp.back();
+	}
+};
+
 
 class Solution {
 public:
