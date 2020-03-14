@@ -1,5 +1,7 @@
 //1221. Concatenated Words
 //k word break
+//1. k word break, for loop str.size instead of word set
+//2. if word[i].size() == 0 || substr == cur_word continue
 
 class Solution {
 public:
