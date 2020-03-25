@@ -13,41 +13,39 @@ public:
 	 */
 	int copyBooks(vector<int>& pages, int k) {
 		// write your code here
-		int sum = 0;
-		int max_page = 0;
+		if (pages.size() == 0) return 0;
+		int min_time = INT_MAX, max_time = 0;
 		for (int i = 0; i < pages.size(); i++)
 		{
-			sum += pages[i];
-			max_page = max(max_page, pages[i]);
+			min_time = min(pages[i], min_time);
+			max_time += pages[i];
 		}
-		int left = max_page, right = sum;
+		int left = min_time, right = max_time;
 		while (left + 1 < right)
 		{
 			int mid = (right - left) / 2 + left;
-			if (findT(mid, k, pages)) right = mid;
+			if (canFinish(mid, pages, k)) right = mid;
 			else left = mid;
 		}
-		if (findT(left, k, pages)) return left;
+		if (canFinish(left, pages, k)) return left;
 		return right;
 	}
 
-	bool findT(int T, int k, vector<int>& pages)
+	bool canFinish(int t, vector<int>& pages, int k)
 	{
 		int count = 0;
-		int ptr = 0;
-		int cur_task = 0;
-		while (ptr < pages.size())
+		int idx = 0;
+		while (idx < pages.size())
 		{
-			cur_task = 0;
-			while (ptr < pages.size() && cur_task < T)
+			int left_t = t;
+			if (left_t < pages[idx]) return false;
+			while (left_t >= pages[idx])
 			{
-				cur_task += pages[ptr];
-				ptr++;
+				left_t = left_t - pages[idx];
+				idx++;
 			}
-			if (cur_task > T) ptr--;
 			count++;
 		}
-		if (cur_task > T) count++;
-		return k >= count;
+		return count <= k;
 	}
 };
