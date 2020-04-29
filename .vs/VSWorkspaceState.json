@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\4.Binary Tree - Divide Conquer & Traverse",
-    "\\9.4 DP Key Points & Coordinate DP",
-    "\\9.4 DP Key Points & Coordinate DP\\backpack",
     "\\Contest",
-    "\\FLAG",
-    "\\FLAG\\Amazon",
-    "\\FLAG\\Facebook",
-    "\\FLAG\\Microsoft"
+    "\\Contest\\Contest179",
+    "\\Contest\\Contest180",
+    "\\Contest\\Contest181",
+    "\\Contest\\Contest183",
+    "\\Contest\\Contest184",
+    "\\Contest\\Contest185",
+    "\\Contest\\Contest186",
+    "\\FLAG"
   ],
-  "SelectedNode": "\\FLAG\\Microsoft\\1069. Remove Comments.cpp",
+  "SelectedNode": "\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }
