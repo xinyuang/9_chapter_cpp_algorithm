@@ -1,5 +1,6 @@
-123. Word Search
-
+//123. Word Search
+//1. next candicate board[x][y] == word[path.size()]
+//2. dfs path for 4 neighbor return path == word
 
 class Solution {
 private:

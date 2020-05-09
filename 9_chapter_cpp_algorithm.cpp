@@ -88,13 +88,32 @@ struct ooops : std::exception {
 	const char* what() const noexcept { return "Ooops!\n"; }
 };
 
+class node {
+public:
+	int key;
+	int value;
+	node(int k, int v)
+	{
+		this->key = k;
+		this->value = v;
+	}
+};
+
 int main() {
+	int8_t a = 200;
+	uint8_t b = 100;
+	cout << bool(a > b) << endl;
+	node* n = new node(1, 2);
 	//try {
-		if(1) throw ooops();
+		//if(1) throw ooops();
 	//}
 	//catch (std::exception& ex) {
 	//	std::cout << ex.what();
 	//}
+	//int x = 5, y = 2;
+	//cout << x & y << endl;
+	cout << 1 << endl;
+
 	return 0;
 }
 
