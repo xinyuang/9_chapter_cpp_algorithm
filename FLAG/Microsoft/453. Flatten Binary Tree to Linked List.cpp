@@ -69,3 +69,33 @@ public:
         }
     }
 };
+
+
+// preorder traverse
+class Solution {
+private:
+	TreeNode* last;
+public:
+	/**
+	 * @param root: a TreeNode, the root of the binary tree
+	 * @return: nothing
+	 */
+	void flatten(TreeNode* root) {
+		// write your code here
+		convert(root);
+	}
+
+	void convert(TreeNode* root)
+	{
+		if (!root) return;
+		if (last)
+		{
+			last->left = nullptr;
+			last->right = root;
+		}
+		last = root;
+		TreeNode* right = root->right;
+		convert(root->left);
+		convert(right);
+	}
+};
