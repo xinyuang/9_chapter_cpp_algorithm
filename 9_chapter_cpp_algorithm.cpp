@@ -11,78 +11,12 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <map>
+#include <queue>
+#include <stack>
+#include <set>
+#include "assert.h"
 
 using namespace std;
-
-//class base {
-//public:
-//	//string res() {
-//	//	cout << "hi" << endl;
-//	//	return "";
-//	//}
-//	string getName() const { return "A"; }
-//};
-//
-//class derived : public base {
-//public:
-//	//virtual string res() {
-//	//	cout << "hello" << endl;
-//	//	return "";
-//	//}
-//	virtual std::string getName() const { return "B"; }
-//};
-
-//class A
-//{
-//public:
-//	// note: no virtual keyword
-//	virtual string getName() const { return "A"; }
-//};
-//
-//class B : public A
-//{
-//public:
-//	virtual std::string getName() const { return "B"; }
-//};
-//
-//class C : public B
-//{
-//public:
-//	virtual std::string getName() const { return "C"; }
-//};
-//
-//class D : public C
-//{
-//public:
-//	virtual std::string getName() const { return "D"; }
-//};
-//
-//class base
-//{
-//public:
-//	// note: no virtual keyword
-//	string getName() const { return "A"; }
-//};
-//
-//class dirived : public base
-//{
-//public:
-//	virtual std::string getName() const { return "B"; }
-//};
-//
-//int main(int argc, char** argv)
-//{
-//
-//	dirived ceee;
-//	base& rBaseeee{ ceee };
-//
-//
-//	C c;
-//	A& rBase{ c };
-//	std::cout << rBase.getName() << '\n';
-//
-//	return 0;
-//}
 
 struct ooops : std::exception {
 	const char* what() const noexcept { return "Ooops!\n"; }
@@ -99,11 +33,43 @@ public:
 	}
 };
 
+class solution {
+private:
+public:
+	int spaceNumber(int n, int limit, int m, string s)
+	{
+		int mod = pow(10, m);
+		vector<int> dp(n + 1, 0);
+		dp[0] = 1;
+		int len = (to_string(limit)).size();
+		for (int i = 1; i <= n; i++)
+		{
+			int count = 0;
+			if (i - len >= 0 && (stoi(s.substr(i - len, len)) <= limit))
+			{
+				dp[i] = dp[i - len];
+			}
+			for (int j = max(0, i - len + 1); j < i; j++)
+			{
+				
+				dp[i] += (dp[j]%mod);
+			}
+			dp[i] = dp[i] % mod;
+		}
+		return dp.back();
+	}
+};
+
 int main() {
-	int8_t a = 200;
-	uint8_t b = 100;
-	cout << bool(a > b) << endl;
-	node* n = new node(1, 2);
+
+	solution s = solution();
+	cout << s.spaceNumber(5, 123, 8, "12345") << endl;
+	cout << s.spaceNumber(7, 1234567, 9, "1234567") << endl;
+
+	//int8_t a = 200;
+	//uint8_t b = 100;
+	//cout << bool(a > b) << endl;
+	//node* n = new node(1, 2);
 	//try {
 		//if(1) throw ooops();
 	//}
@@ -112,8 +78,7 @@ int main() {
 	//}
 	//int x = 5, y = 2;
 	//cout << x & y << endl;
-	cout << 1 << endl;
-
+	//cout << 1 << endl;
 	return 0;
 }
 
