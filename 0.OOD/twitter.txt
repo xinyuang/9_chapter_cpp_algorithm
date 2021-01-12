@@ -1,0 +1,193 @@
+// User Active Minutes
+// Problem statement: 
+// We are interested in tracking user engagement at Twitter. 
+
+// Suppose we have a service that generates a log for any action taken on Twitter. Whenever a user takes any action on Twitter (for example, if they write a tweet, like a tweet, or view another user’s timeline), that user’s user_id and an epoch timestamp in seconds is logged. The log is written as a list of these pairs sorted chronologically by timestamp. For example:
+
+// [1, 1518290973]  // milisecond  log in time
+// [2, 1518291032]
+// [3, 1518291095]
+// [1, 1518291096]
+// [4, 1518291120]
+// [3, 1518291178]
+// [1, 1518291200]
+// [1, 1518291200]
+// [1, 1518291202]
+// [1, 1518291281]
+
+// Now, suppose that we would like to gauge user engagement by tracking a metric called User Active Minutes (UAM) for each user. We define this metric to be the number of distinct minutes that contained an action taken by that user. We can use the logs to determine the number of UAM that each user has.
+
+// For example, if we filter the example logs above so that only entries for user_id 1 appear and we see:
+// [1, //] 
+// [1, 1518291096] 
+// [1, 1518291200]
+// [1, 1518291202]
+// [1, 1518291281]
+
+// Then, user 1’s UAM is 4. There are five actions, but the third and fourth actions both fall within the same, non-distinct minute, so the fourth action does not count towards an additional UAM. However, the first two actions and the last action occur in different minutes, so the total UAM is 4.
+
+// We are interested in obtaining a histogram that shows the number of users whose UAM falls within certain ranges, determined by a bin size. For instance, if our bin size is 100, after processing our log we might find that 20 users fall between 0-99 UAM, 34 users fall between 100-199 UAM, 48 users fall between 200-299 UAM, and so on. 
+
+// How would one implement a solution that creates a histogram for UAM as described above, given a raw log and a bin size?
+
+//
+//
+//         
+//       [0,1][1,2][2,3][3,4]
+
+
+// Example:
+// Given Inputs: 
+// Raw logs
+// [1, 1518290973]
+// [2, 1518291032]
+// [3, 1518291095]
+// [1, 1518291096]
+// [4, 1518291120]
+// [3, 1518291178]
+// [1, 1518291200]
+// [1, 1518291200]
+// [1, 1518291281]
+
+// 2. Bin width = 2  // 2 min  [0,120000]
+
+
+// Intermediate step:
+// User 1: 4 UAM
+// User 2: 1 UAM
+// User 3: 2 UAM
+// User 4: 1 UAM
+
+
+// Expected result: [2, 1, 1]
+// Corresponding to this :
+// | # minutes  | # users |
+// |        0-1 |       2 |
+// |        2-3 |       1 |
+// |       4-5 |      1 |
+
+
+// 2 users spend 0 - 1 UAM on Twitter
+// 1 user spends 2 - 3 UAM on Twitter
+// 1 user spends 4 - 5 UAM on Twitter
+
+// Another example on the histogram specifically:
+
+// User A: 3 UAM
+// User B: 4 UAM
+// User C: 12 UAM
+// User D: 13 UAM
+
+// Bin width = 5
+
+// 0->4, 5->9, 10->14
+//  2      0     2
+
+// Input will be given in the format:
+// List<Pair<Integer, Integer>> raw_logs (Java)
+// std::vector<std::pair<int, int>> raw_logs (C++)  // user_id, timestamp
+// int bin_width
+
+// start time 0,   delta time 120000   [start,end][start,end][start,end]
+
+//  bucket 0-2min -> 4 users
+//  bucket 2-4min -> 3 users
+
+// userA datatime.datatime(12:01).getCurrentInMillis()
+// 12:59 userA
+// userA -> 2
+// bucket 0-2min -> 1 user (UserA)
+// 1440min /2 = 720 buckets
+
+// [1, 150,000,000]
+// [1, 150113000]
+// [2, 150213000]
+// [1, 156000000]   (15600 000 - 150, 000 000 )  / 120 000 = 600 000 / 120 000 = 5
+// bucket 0-2 min -> 1 user
+// bucket 2-4 min -> 1 user
+
+
+
+
+#include <vector>
+#include <unordered_set>
+#include <iostream>
+#include <unordered_map>
+
+
+using namespace std;
+namespace Tweet{
+    
+    
+    vector<int> getHist(std::vector<std::pair<int, int>> raw_logs)
+    {
+        int start = raw_logs[0].first;  //150 000 000
+        double delta = 120000;  //  
+        unordered_set<int> ids;
+        // vector<unordered_set<int>> bucket(720,unordered_set<int>());
+        
+        int old_bucket = -1;
+        
+        unordered_map<int,int> user_count;  /// user min
+        
+        for(int i = 0; i < raw_logs.size(); i++)
+        {
+            int timestamp = raw_logs[i].second;
+            int user = raw_logs[i].first;
+            int bucket_idx = (timestamp - start) / delta;  // 1
+            // bucket[bucket_idx].insert(user);
+            ids.insert(user);
+            if(bucket_idx != old_bucket)
+            {
+                user_count[user]++;
+            }
+            old_bucket = bucket_idx;  // 2
+        }
+        
+        //   [0,1,2,3,4,5]
+        
+        // user_count user, min
+        unordered_map<int,int> min_user;  // 1, u 3, u_count
+        vector<int> count(720,0);  // in each bucket, how many users
+        for(auto e : user_count)
+        {
+            count[e.second]++;
+        }
+        
+        
+        
+        
+        vector<int> res;
+        for(auto e : user_count)
+        {
+            res.push_back(e.second);
+        }
+        
+        //   [  u1,u2,u1,u3] [u1,u2] [u1,u3]
+        
+        //  u1  3
+        //  u2  2
+        //  u3  2
+        
+        //
+        
+        // vector<int> res;
+        // for(int i = 0; i < bucket.size(); i++)
+        // {
+        //     res.push_back(bucket[i].size());
+        // }
+        
+        
+        return res;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+
